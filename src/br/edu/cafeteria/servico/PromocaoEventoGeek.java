@@ -4,7 +4,7 @@ import br.edu.cafeteria.modelo.Bebida;
 import br.edu.cafeteria.modelo.ItemPedido;
 import br.edu.cafeteria.modelo.Pedido;
 
-public class PromocaoEventoGeek {
+public class PromocaoEventoGeek implements Promocional {
 
     public double aplicarDesconto(Pedido pedido)
     {
