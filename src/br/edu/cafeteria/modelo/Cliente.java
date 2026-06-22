@@ -1,50 +1,84 @@
 package br.edu.cafeteria.modelo;
 
+import br.edu.cafeteria.excecao.ValorInvalido;
+
 public abstract class Cliente {
 
     private String nome;
     private String cpf;
     private int saldoXP; // Experiencia acomulada por pontos;
 
-    //Construtor;
+    // Construtor;
     public Cliente(String nome, String cpf) {
         this.nome = nome;
         this.cpf = cpf;
         this.saldoXP = 0;
     }
 
-    //Getter e Setter;
+    // Getter
     public String getNome() {
         return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
     public int getSaldoXP() {
         return saldoXP;
     }
 
-    public void setSaldoXP(int saldoXP) {
-        this.saldoXP = saldoXP;
-    }
+    // Método abstrato que será sobrescrito;
+    protected abstract int calcularPontos(double valorGasto);
 
-     //Método abstrato que será sobrescrito;
-    public abstract int calcularPontos(double valorGasto);
-
-     //Método para adicionar XP após compra;
-    public void adicionarXP(double valorGasto) {
+    // Método para adicionar XP após compra;
+    protected void adicionarXP(double valorGasto) {
         int pontos = calcularPontos(valorGasto);
         this.saldoXP += pontos;
     }
 
+    protected void removerXP(int pontos) {
+        this.saldoXP -= pontos;
+    }
+
+    // Metodo de atualização de cliente;
+    public void atualizarCliente() {
+        String menu = "0. Atualizar Nome\n1. Atualizar CPF\n2. Sair";
+        int op = 0;
+        do {
+            String strOp = javax.swing.JOptionPane.showInputDialog(menu);
+            op = Integer.parseInt(strOp);
+            switch (op) {
+                case 0:
+                    String novoNome = javax.swing.JOptionPane.showInputDialog("Digite o novo nome:");
+                    try {
+                        if (novoNome == null || novoNome.trim().isEmpty()) {
+                            throw new ValorInvalido("O nome não pode ser vazio.");
+                        } else {
+                            this.nome = novoNome;
+                        }
+
+                    } catch (ValorInvalido e) {
+                        javax.swing.JOptionPane.showMessageDialog(null, e.getMessage());
+                    }
+                    break;
+                case 1:
+                    String novoCpf = javax.swing.JOptionPane.showInputDialog("Digite o novo CPF:");
+                    try {
+                        if (novoCpf == null || novoCpf.trim().isEmpty()) {
+                            throw new ValorInvalido("O CPF não pode ser vazio.");
+                        } else {
+                            this.cpf = novoCpf;
+                        }
+                    } catch (ValorInvalido e) {
+                        javax.swing.JOptionPane.showMessageDialog(null, e.getMessage());
+                    }
+                    break;
+                case 2:
+                    javax.swing.JOptionPane.showMessageDialog(null, "Saindo da atualização de Cliente.");
+                default:
+                    javax.swing.JOptionPane.showMessageDialog(null, "Opção inválida. Tente novamente.");
+            }
+        } while (op != 2);
+    }
 }
