@@ -13,7 +13,7 @@ public abstract class Produto {
     private int quantidadeEstoque;
 
     // Construtor;
-    public Produto(String codigo, String nome, double precoBase, int quantidadeEstoque) {
+    protected Produto(String codigo, String nome, double precoBase, int quantidadeEstoque) {
         this.codigo = codigo;
         this.nome = nome;
         this.precoBase = precoBase;
