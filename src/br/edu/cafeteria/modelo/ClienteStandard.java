@@ -2,15 +2,19 @@ package br.edu.cafeteria.modelo;
 
 public class ClienteStandard extends Cliente {
 
-    //Construtor;
+    // Construtor;
     public ClienteStandard(String nome, String cpf) {
         super(nome, cpf);
     }
 
-    //Sobrescrita do metodo abstrato para Standard;
+    public String toString() {
+        return "Cliente Standard - Nome: " + getNome() + ", CPF: " + getCpf() + ", Saldo XP: " + getSaldoXP() + "\n";
+    }
+
+    // Sobrescrita do metodo abstrato para Standard;
     @Override
     public int calcularPontos(double valorGasto) {
-        return (int) valorGasto; //1XP por cada real gasto;
+        return (int) valorGasto; // 1XP por cada real gasto;
     }
 
 }

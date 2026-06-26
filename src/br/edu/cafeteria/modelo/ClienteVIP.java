@@ -11,6 +11,10 @@ public class ClienteVIP extends Cliente {
         super(nome, cpf);
     }
 
+    public String toString() {
+        return "Cliente VIP - Nome: " + getNome() + ", CPF: " + getCpf() + ", Saldo XP: " + getSaldoXP() + "\n";
+    }
+
     // Sobrescrita do metodo abstrato para o VIP;
     public int calcularPontos(double valorGasto) {
         return (int) (valorGasto * 2); // 2Xp por real gasto;

@@ -28,6 +28,10 @@ public abstract class Cliente {
         return saldoXP;
     }
 
+    public String toString() {
+        return "Nome: " + nome + ", CPF: " + cpf + ", Saldo XP: " + saldoXP + "\n";
+    }
+
     // Método abstrato que será sobrescrito;
     protected abstract int calcularPontos(double valorGasto);
 
