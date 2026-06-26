@@ -161,7 +161,7 @@ public class Principal {
             switch (aux) {
                 case 1:
                     // Adicionar Item
-                    // Colocar Listar produtos aqui;
+                    listarProdutos();
                     String nomeProduto = JOptionPane.showInputDialog("Digite o nome do produto:");
                     Produto produto = pesquisarProdutoPorNome(nomeProduto);
                     int quantidade = Integer.parseInt(JOptionPane.showInputDialog("Digite a quantidade:"));
