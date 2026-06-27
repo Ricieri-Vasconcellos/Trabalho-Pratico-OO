@@ -38,12 +38,25 @@ public abstract class Produto {
         return quantidadeEstoque;
     }
 
+    public String toString() {
+        String resposta = "=== " + getClass() + " ===\n";
+        resposta += "Nome: " + getNome() + "\n";
+        resposta += "Codigo: " + getCodigo() + "\n";
+        resposta += "Preço: " + getPrecoBase() + "\n";
+        resposta += "Quantidade em estoque: " + getQuantidadeEstoque() + "\n";
+        return resposta;
+    }
+
     // Método para reduzir estoque (usado na venda)
-    public void reduzirEstoque(int quantidade) throws EstoqueInsuficienteException {
-        if (this.quantidadeEstoque < quantidade) {
-            throw new EstoqueInsuficienteException("Estoque insuficiente de " + this.nome);
-        } else {
-            this.quantidadeEstoque -= quantidade;
+    public void reduzirEstoque(int quantidade) {
+        try {
+            if (this.quantidadeEstoque < quantidade) {
+                throw new EstoqueInsuficienteException("Estoque insuficiente de " + this.nome);
+            } else {
+                this.quantidadeEstoque -= quantidade;
+            }
+        } catch (EstoqueInsuficienteException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
 
@@ -60,6 +73,8 @@ public abstract class Produto {
                     try {
                         if (novoCodigo == null || novoCodigo.trim().isEmpty()) {
                             throw new ValorInvalido("Código do produto não pode ser vazio.");
+                        } else {
+                            this.codigo = novoCodigo;
                         }
                     } catch (ValorInvalido e) {
                         JOptionPane.showMessageDialog(null, e.getMessage());
@@ -71,6 +86,8 @@ public abstract class Produto {
                     try {
                         if (novoNome == null || novoNome.trim().isEmpty()) {
                             throw new ValorInvalido("Nome do produto não pode ser vazio.");
+                        } else {
+                            this.nome = novoNome;
                         }
                     } catch (ValorInvalido e) {
                         JOptionPane.showMessageDialog(null, e.getMessage());
@@ -93,13 +110,13 @@ public abstract class Produto {
                     break;
                 case 3:
                     String strQuantidade = JOptionPane
-                            .showInputDialog("Digite a quantidade a ser adicionada ao estoque:");
+                            .showInputDialog("Digite a quantidade do estoque:");
                     int novaQuantidade = Integer.parseInt(strQuantidade);
                     try {
                         if (novaQuantidade < 0) {
                             throw new ValorInvalido("Quantidade não pode ser negativa.");
                         } else {
-                            this.quantidadeEstoque += novaQuantidade;
+                            this.quantidadeEstoque = novaQuantidade;
                         }
                     } catch (ValorInvalido e) {
                         JOptionPane.showMessageDialog(null, e.getMessage());
