@@ -1,11 +1,13 @@
 package br.edu.cafeteria.modelo;
 
 import br.edu.cafeteria.excecao.EstoqueInsuficienteException;
-import br.edu.cafeteria.excecao.PontosInsuficientesException;
 import br.edu.cafeteria.excecao.ValorInvalido;
+import br.edu.cafeteria.servico.PromocaoEventoGeek;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JOptionPane;
 
 public class Pedido {
 
@@ -14,18 +16,43 @@ public class Pedido {
     private final Cliente cliente; // Pode ser null (casual);
     private List<ItemPedido> itens;
     private double valorTotal;
+    private String atendente;
 
-    public Pedido(Cliente cliente) {
-        this.numeroPedido = proximoNumero++;
+    public Pedido(Cliente cliente, int op) {
         this.cliente = cliente;
         this.itens = new ArrayList<>();
-        this.valorTotal = 0.0;
+        try {
+            this.valorTotal = 0.0;
+            switch (op) {
+                case 1:
+                    this.atendente = "Roberto";
+                    break;
+                case 2:
+                    this.atendente = "Paula";
+                    break;
+                case 3:
+                    this.atendente = "Сristian";
+                    break;
+                default:
+                    throw new ValorInvalido("Valor invalido selecione um dos atendentes(1 ou 2 ou 3)!");
+            }
+        } catch (ValorInvalido e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        this.numeroPedido = proximoNumero++;
     }
 
     public String toString() {
-        String resposta = "Pedido #" + this.numeroPedido + " - Cliente: "
-                + (this.cliente != null ? this.cliente.getNome() : "Não cadastrado") + " - Valor Total: R$"
-                + this.valorTotal + "\n";
+        String resposta = "Pedido #" + this.numeroPedido + "\n" + " - Cliente: "
+                + (this.cliente != null ? this.cliente.getNome() : "Não cadastrado") + "\n";
+        resposta += "==== Itens === \n";
+        for (ItemPedido p : itens) {
+            resposta += p.toString();
+        }
+
+        resposta += "\n" + " - Valor Total: R$"
+                + this.valorTotal + "\n" +
+                "Atendente: " + atendente + "\n";
         return resposta;
     }
 
@@ -85,9 +112,9 @@ public class Pedido {
         }
     }
 
-    public double calcularTotalComDesconto(boolean isDiaEventoGeek) {
+    public double calcularDesconto(boolean isDiaEventoGeek) {
         if (!isDiaEventoGeek) {
-            return this.valorTotal;
+            return 0;
         }
 
         // Aplica 10% de desconto APENAS nas bebidas (polimorfismo);
@@ -98,21 +125,23 @@ public class Pedido {
             }
         }
         double desconto = totalBebidas * 0.10;
-        return this.valorTotal - desconto;
+        return desconto;
     }
 
     // Finaliza venda -> atualiza estoque e, se houver cliente, adiciona XP;
-    public void finalizarVenda(boolean pagamentoComXP)
-            throws EstoqueInsuficienteException, PontosInsuficientesException {
+    public void finalizarVenda(boolean pagamentoComXP) {
         // 1) Atualiza o estoque do produto com o metodo reduzirEstoque da classe
         // Produto;
+        boolean evento = PromocaoEventoGeek.isEvento();
+
         for (ItemPedido item : itens) {
             Produto p = item.getProduto();
             p.reduzirEstoque(item.getQuantidade());
         }
 
         // 2) Calcula o valor final (sem evento Geek);
-        double valorFinal = this.valorTotal;
+        double desconto = calcularDesconto(evento);
+        double valorFinal = this.valorTotal - desconto;
 
         // 3) Se Cliente for VIP e pagamentoComXP = true, tenta pagar com pontos;
         if (pagamentoComXP && cliente instanceof ClienteVIP) {
@@ -124,6 +153,16 @@ public class Pedido {
         else if (cliente != null && !(pagamentoComXP && cliente instanceof ClienteVIP)) {
             cliente.adicionarXP(valorFinal); // Polimorfismo por inclusão;
         }
+
+        String venda = "=== Pedido Finalizado ===\n";
+        venda += toString();
+        if (cliente != null) {
+            venda += "Novo saldo de XP: " + cliente.getSaldoXP() + "\n";
+        }
+        venda += "Descontos: " + desconto + "\n";
+        venda += "Valor final: " + valorFinal + "\n";
+
+        JOptionPane.showConfirmDialog(null, venda, "Venda Finalizada", JOptionPane.INFORMATION_MESSAGE);
     }
 
     // Getter;
@@ -141,5 +180,9 @@ public class Pedido {
 
     public double getValorTotal() {
         return valorTotal;
+    }
+
+    public String getAtendente() {
+        return atendente;
     }
 }
