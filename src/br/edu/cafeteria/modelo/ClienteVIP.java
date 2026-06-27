@@ -1,5 +1,7 @@
 package br.edu.cafeteria.modelo;
 
+import javax.swing.JOptionPane;
+
 import br.edu.cafeteria.excecao.PontosInsuficientesException;
 
 public class ClienteVIP extends Cliente {
@@ -21,7 +23,7 @@ public class ClienteVIP extends Cliente {
     }
 
     // Método exclusivo para pagar com XP;
-    public void pagarComXP(double valorTotal) throws PontosInsuficientesException {
+    public void pagarComXP(double valorTotal) {
         int xpNecessario = (int) (valorTotal * TAXA_CONVERSAO);
         try {
             if (getSaldoXP() < xpNecessario) {
@@ -31,7 +33,7 @@ public class ClienteVIP extends Cliente {
                 removerXP(xpNecessario);
             }
         } catch (PontosInsuficientesException e) {
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
 
     }
