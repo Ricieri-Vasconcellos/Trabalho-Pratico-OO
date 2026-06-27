@@ -12,9 +12,11 @@ public class Menu {
         menu += "1. Abrir Pedido\n";
         menu += "2. Listar Pedidos\n";
         menu += "3. Listar Produtos\n";
-        menu += "4. Cadastrar Cliente\n";
-        menu += "5. Listar Clientes\n";
+        menu += "4. Listar Clientes\n";
+        menu += "5. Cadastros\n";
         menu += "6. Pesquisas\n";
+        menu += "7. Atualizar\n";
+        menu += "8. Remover\n";
         menu += "0. Sair\n";
         menu += "Escolha uma opção: ";
 
@@ -57,4 +59,49 @@ public class Menu {
         return op;
     }
 
+    public static int exibirMenuAtualizar() {
+        String menu = "\n=== Byte & Brew - Menu de Atualizações ===\n";
+        menu += "1. Atualizar Produto\n";
+        menu += "2. Atualizar Cliente\n";
+        menu += "3. Atualizar EventoGeek\n";
+        menu += "0. Sair/n";
+        menu += "Escolha uma opção: ";
+
+        String strOp = JOptionPane.showInputDialog(menu);
+
+        int op = Integer.parseInt(strOp);
+
+        return op;
+
+    }
+
+    public static int exibirMenuRemover() {
+        String menu = "\n=== Byte & Brew - Menu de Remover ===\n";
+        menu += "1. Remover Produto\n";
+        menu += "2. Remover Cliente\n";
+        menu += "0. Sair\n";
+        menu += "Escolha uma opção: ";
+
+        String strOp = JOptionPane.showInputDialog(menu);
+
+        int op = Integer.parseInt(strOp);
+
+        return op;
+
+    }
+
+    public static int exibirMenuCadastros() {
+        String menu = "\n=== Byte & Brew - Menu de Cadastros ===\n";
+        menu += "1. Cadastrar Produto\n";
+        menu += "2. Cadastrar Cliente\n";
+        menu += "0. Sair\n";
+        menu += "Escolha uma opção: ";
+
+        String strOp = JOptionPane.showInputDialog(menu);
+
+        int op = Integer.parseInt(strOp);
+
+        return op;
+
+    }
 }
