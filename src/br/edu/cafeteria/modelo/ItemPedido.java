@@ -26,4 +26,10 @@ public class ItemPedido {
         return subtotal;
     }
 
+    public String toString() {
+        String resposta = "";
+        resposta += produto.getNome() + " - " + quantidade + " - R$" + subtotal + "\n";
+        return resposta;
+    }
+
 }
