@@ -1,5 +1,7 @@
 package br.edu.cafeteria.modelo;
 
+import javax.swing.JOptionPane;
+
 import br.edu.cafeteria.excecao.ValorInvalido;
 
 public abstract class Cliente {
@@ -10,9 +12,19 @@ public abstract class Cliente {
 
     // Construtor;
     public Cliente(String nome, String cpf) {
-        this.nome = nome;
-        this.cpf = cpf;
-        this.saldoXP = 0;
+        try {
+            if (nome.isBlank() || nome.trim().isEmpty() || cpf.isBlank() || cpf.trim().isEmpty()) {
+                throw new ValorInvalido("Nem o nome nem o CPF pode ser nulos!");
+
+            } else {
+
+                this.nome = nome;
+                this.cpf = cpf;
+                this.saldoXP = 0;
+            }
+        } catch (ValorInvalido e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }
 
     // Getter
@@ -80,8 +92,10 @@ public abstract class Cliente {
                     break;
                 case 2:
                     javax.swing.JOptionPane.showMessageDialog(null, "Saindo da atualização de Cliente.");
+                    break;
                 default:
                     javax.swing.JOptionPane.showMessageDialog(null, "Opção inválida. Tente novamente.");
+                    break;
             }
         } while (op != 2);
     }
