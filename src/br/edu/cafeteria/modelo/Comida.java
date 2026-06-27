@@ -35,7 +35,18 @@ public class Comida extends Produto {
         int op = 0;
         do {
             String strOp = javax.swing.JOptionPane.showInputDialog(menu);
-            op = Integer.parseInt(strOp);
+            // Tratamento para caso o usuário cancele
+            if (strOp == null) {
+                op = 4; // Sai do loop
+                break;
+            }
+            try {
+                op = Integer.parseInt(strOp);
+            } catch (NumberFormatException e) {
+                javax.swing.JOptionPane.showMessageDialog(null, "Opção inválida. Digite um número.");
+                continue;
+            }
+
             switch (op) {
                 case 0:
                     super.atualizarProduto();
@@ -43,44 +54,35 @@ public class Comida extends Produto {
                 case 1:
                     String strTempo = javax.swing.JOptionPane
                             .showInputDialog("Digite o novo tempo de preparo (em minutos):");
-                    int novoTempo = Integer.parseInt(strTempo);
+                    if (strTempo == null)
+                        break; // cancelado
                     try {
+                        int novoTempo = Integer.parseInt(strTempo);
                         if (novoTempo < 0) {
                             throw new ValorInvalido("O tempo de preparo não pode ser negativo.");
                         } else {
                             this.tempoPreparo = novoTempo;
                         }
-                    } catch (ValorInvalido e) {
+                    } catch (ValorInvalido | NumberFormatException e) {
                         javax.swing.JOptionPane.showMessageDialog(null, e.getMessage());
                     }
                     break;
                 case 2:
-                    String strVegano = javax.swing.JOptionPane.showInputDialog("A comida é vegana? (S/N):");
-                    try {
-                        if (strVegano.equalsIgnoreCase("S")) {
-                            this.isVegano = true;
-                        } else if (strVegano.equalsIgnoreCase("N")) {
-                            this.isVegano = false;
-                        } else {
-                            throw new ValorInvalido("Entrada inválida. Use 'S' para sim ou 'N' para não.");
-                        }
-                    } catch (ValorInvalido e) {
-                        javax.swing.JOptionPane.showMessageDialog(null, e.getMessage());
-                    }
+                    int respVegano = javax.swing.JOptionPane.showConfirmDialog(
+                            null,
+                            "A comida é vegana?",
+                            "Vegano",
+                            javax.swing.JOptionPane.YES_NO_OPTION);
+                    // Se YES_OPTION (0) => true, caso contrário (NO ou CLOSED) => false
+                    this.isVegano = (respVegano == javax.swing.JOptionPane.YES_OPTION);
                     break;
                 case 3:
-                    String strGluten = javax.swing.JOptionPane.showInputDialog("A comida tem gluten? (S/N):");
-                    try {
-                        if (strGluten.equalsIgnoreCase("S")) {
-                            this.haveGluten = true;
-                        } else if (strGluten.equalsIgnoreCase("N")) {
-                            this.haveGluten = false;
-                        } else {
-                            throw new ValorInvalido("Entrada inválida. Use 'S' para sim ou 'N' para não.");
-                        }
-                    } catch (ValorInvalido e) {
-                        javax.swing.JOptionPane.showMessageDialog(null, e.getMessage());
-                    }
+                    int respGluten = javax.swing.JOptionPane.showConfirmDialog(
+                            null,
+                            "A comida tem glúten?",
+                            "Glúten",
+                            javax.swing.JOptionPane.YES_NO_OPTION);
+                    this.haveGluten = (respGluten == javax.swing.JOptionPane.YES_OPTION);
                     break;
                 case 4:
                     javax.swing.JOptionPane.showMessageDialog(null, "Saindo da atualização de produto.");
