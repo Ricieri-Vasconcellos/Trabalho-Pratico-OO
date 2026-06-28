@@ -10,7 +10,8 @@ public class Bebida extends Produto {
     int cafeinaMg;
     boolean quente;
 
-    // Construtor
+    // ==================== MÉTODO CONSTRUTOR ====================
+
     public Bebida(String codigo, String nome, double precoBase, int quantidadeEstoque, char tamanho, int cafeinaMg,
             boolean quente) {
         super(codigo, nome, precoBase, quantidadeEstoque);
@@ -19,7 +20,7 @@ public class Bebida extends Produto {
         this.quente = quente;
     }
 
-    // Getter
+    // ==================== MÉTODOS GETTERS ====================
     public char getTamanho() {
         return tamanho;
     }
@@ -32,7 +33,8 @@ public class Bebida extends Produto {
         return quente;
     }
 
-    // Método para atualizar os atributos do produto
+    // ==================== MÉTODO PARA ATUALIZAR PRODUTO ====================
+
     public void atualizarProduto() {
         String menu = "0. Atualizar Codigo/Nome/Preço/Estoque\n1. Atualizar tamanho\n2. Atualizar cafeinaMg\n3. Atualizar temperatura\n4. Sair";
         int op = 0;

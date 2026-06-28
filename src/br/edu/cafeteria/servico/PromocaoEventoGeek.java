@@ -8,6 +8,10 @@ import br.edu.cafeteria.modelo.Pedido;
 
 public class PromocaoEventoGeek implements Promocional {
 
+    public static boolean evento;
+
+    // ==================== MÉTODO PARA APLICAR DESCONTO ====================
+
     public double aplicarDesconto(Pedido pedido) {
         double totalBebidas = 0.0;
 
@@ -19,12 +23,14 @@ public class PromocaoEventoGeek implements Promocional {
         return totalBebidas * 0.10; // Retorna o valor do desconto;
     }
 
-    public static boolean evento;
+    // ==================== MÉTODOS GETTERS ====================
 
     public static boolean isEvento() {
         return evento;
     }
 
+    // ==================== MÉTODO PARA ATIVAR OU DESATIVAR EVENTO ====================
+    
     public static void setEvento() {
         int resposta = JOptionPane.showConfirmDialog(
                 null,

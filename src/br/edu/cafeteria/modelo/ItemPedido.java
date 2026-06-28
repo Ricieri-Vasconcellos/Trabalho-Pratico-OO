@@ -6,14 +6,16 @@ public class ItemPedido {
     private int quantidade;
     private double subtotal;
 
-    // Construtor
+    // ==================== MÉTODO CONSTRUTOR ====================
+
     public ItemPedido(Produto produto, int quantidade) {
         this.produto = produto;
         this.quantidade = quantidade;
         this.subtotal = produto.getPrecoBase() * quantidade;
     }
 
-    // Getter
+    // ==================== MÉTODOS GETTERS ====================
+
     public Produto getProduto() {
         return produto;
     }

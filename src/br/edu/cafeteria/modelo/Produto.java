@@ -12,7 +12,8 @@ public abstract class Produto {
     private double precoBase;
     private int quantidadeEstoque;
 
-    // Construtor;
+    // ==================== MÉTODO CONSTRUTOR ====================
+
     protected Produto(String codigo, String nome, double precoBase, int quantidadeEstoque) {
         this.codigo = codigo;
         this.nome = nome;
@@ -21,7 +22,8 @@ public abstract class Produto {
 
     }
 
-    // Getter;
+    // ==================== MÉTODOS GETTERS ====================
+
     public String getCodigo() {
         return codigo;
     }
@@ -47,7 +49,8 @@ public abstract class Produto {
         return resposta;
     }
 
-    // Método para reduzir estoque (usado na venda)
+    // ==================== MÉTODO PARA REDUZIR PRODUTO DO ESTOQUE ====================
+
     public void reduzirEstoque(int quantidade) {
         try {
             if (this.quantidadeEstoque < quantidade) {
@@ -60,7 +63,8 @@ public abstract class Produto {
         }
     }
 
-    // Método para atualizar produto
+    // ==================== MÉTODO PARA ATUALIZAR PRODUTO ====================
+    
     public void atualizarProduto() {
         int op = 0;
         String menu = "0. Atualizar Codigo\n1. Atualizar nome\n2. Atualizar preço\n3. Atualizar estoque\n4. Sair";

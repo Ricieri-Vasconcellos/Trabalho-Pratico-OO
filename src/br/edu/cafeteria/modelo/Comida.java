@@ -8,7 +8,8 @@ public class Comida extends Produto {
     private boolean isVegano;
     private boolean haveGluten;
 
-    // Construtor;
+    // ==================== MÉTODO CONSTRUTOR ====================
+
     public Comida(String codigo, String nome, double precoBase, int quantidadeEstoque, int tempoPreparo,
             boolean isVegano, boolean haveGluten) {
         super(codigo, nome, precoBase, quantidadeEstoque);
@@ -17,7 +18,8 @@ public class Comida extends Produto {
         this.haveGluten = haveGluten;
     }
 
-    // Getter
+    // ==================== MÉTODOS GETTERS ====================
+
     public int getTempoPreparo() {
         return tempoPreparo;
     }
@@ -29,6 +31,8 @@ public class Comida extends Produto {
     public boolean temGluten() {
         return haveGluten;
     }
+
+    // ==================== MÉTODO PARA ATUALIZAR PRODUTO ====================
 
     public void atualizarProduto() {
         String menu = "0. Atualizar Codigo/Nome/Preço/Estoque\n1. Atualizar Tempo de Preparo\n2. Atualizar se é Vegano\n3. Atualizar se tem Gluten\n4. Sair";

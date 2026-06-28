@@ -18,6 +18,8 @@ public class Pedido {
     private double valorTotal;
     private String atendente;
 
+    // ==================== MÉTODO CONSTRUTOR ====================
+
     public Pedido(Cliente cliente, int op) {
         this.cliente = cliente;
         this.itens = new ArrayList<>();
@@ -42,19 +44,25 @@ public class Pedido {
         this.numeroPedido = proximoNumero++;
     }
 
+    // ==================== MÉTODO TOSTRING ====================
+
     public String toString() {
         String resposta = "Pedido #" + this.numeroPedido + "\n" + " - Cliente: "
                 + (this.cliente != null ? this.cliente.getNome() : "Não cadastrado") + "\n";
-        resposta += "==== Itens === \n";
+        resposta += "==== Itens ==== \n";
         for (ItemPedido p : itens) {
             resposta += p.toString();
         }
 
-        resposta += "\n" + " - Valor Total: R$"
+        resposta += "\n" + "Valor Total: R$"
                 + this.valorTotal + "\n" +
                 "Atendente: " + atendente + "\n";
+        resposta += "==============\n";
+
         return resposta;
     }
+
+    // ==================== MÉTODO PARA ADICIONAR ITEM ====================
 
     // Sobrescrita 1: adiciona uma unidade;
     public void adicionarItem(Produto p) {
@@ -95,6 +103,8 @@ public class Pedido {
         this.valorTotal += item.getSubtotal();
     }
 
+    // ==================== MÉTODO PARA REMOVER ITEM ====================
+
     public void removerItem(Produto p) {
         ItemPedido itemARemover = null;
         for (ItemPedido item : itens) {
@@ -112,6 +122,8 @@ public class Pedido {
         }
     }
 
+    // ==================== MÉTODO PARA CALCULAR DESCONTO ====================
+
     public double calcularDesconto(boolean isDiaEventoGeek) {
         if (!isDiaEventoGeek) {
             return 0;
@@ -127,6 +139,8 @@ public class Pedido {
         double desconto = totalBebidas * 0.10;
         return desconto;
     }
+
+    // ==================== MÉTODO PARA FINALIZAR VENDA ====================
 
     // Finaliza venda -> atualiza estoque e, se houver cliente, adiciona XP;
     public void finalizarVenda(boolean pagamentoComXP) {
@@ -165,7 +179,8 @@ public class Pedido {
         JOptionPane.showConfirmDialog(null, venda, "Venda Finalizada", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    // Getter;
+    // ==================== MÉTODOS GETTERS ====================
+
     public int getNumeroPedido() {
         return numeroPedido;
     }

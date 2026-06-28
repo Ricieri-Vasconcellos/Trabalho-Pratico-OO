@@ -451,6 +451,8 @@ public class Principal {
         } while (op != 0);
     }
 
+    // ==================== MÉTODO PARA CADASTRAR ====================
+
     private static void cadastrar() {
         int op;
         do {
@@ -477,7 +479,6 @@ public class Principal {
         } while (op != 0);
     }
 
-    // ==================== MÉTODO PARA CADASTRAR ====================
     private static void cadastrarProduto() {
         String tipo = JOptionPane.showInputDialog("Digite o tipo do produto:\n1 - Comida\n2 - Bebida");
         if (tipo == null)
@@ -589,6 +590,7 @@ public class Principal {
     }
 
     // ==================== INICIALIZAÇÃO DE DADOS ====================
+
     private static void inicializarDados() {
         // ========== COMIDAS ==========
         produtos.add(new Comida("C001", "Hambúrguer do Mario", 18.50, 15, 12, false, false));
@@ -616,8 +618,9 @@ public class Principal {
 
         // ========== CLIENTES ==========
         clientes.add(new ClienteVIP("Ricieri", "252014410"));
-        clientes.add(new ClienteStandard("João Pedro", "252014724"));
+        clientes.add(new ClienteVIP("João Pedro", "252014724"));
         clientes.add(new ClienteVIP("Breno", "252003847"));
+        clientes.add(new ClienteStandard("João Akio", "252014715"));
         clientes.add(new ClienteStandard("Luana Silva", "123.456.789-00"));
         clientes.add(new ClienteVIP("Bruno Nerd", "987.654.321-00"));
 

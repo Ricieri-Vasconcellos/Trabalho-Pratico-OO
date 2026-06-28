@@ -8,11 +8,12 @@ public class ClienteVIP extends Cliente {
 
     private static final int TAXA_CONVERSAO = 10; // 10 XP = R$ 1;
 
-    // Construtor;
+    // ==================== MÉTODO CONSTRUTOR ====================
+
     public ClienteVIP(String nome, String cpf) {
         super(nome, cpf);
     }
-
+    // ==================== MÉTODO TOSTRING ====================
     public String toString() {
         return "Cliente VIP - Nome: " + getNome() + ", CPF: " + getCpf() + ", Saldo XP: " + getSaldoXP() + "\n";
     }
@@ -22,7 +23,7 @@ public class ClienteVIP extends Cliente {
         return (int) (valorGasto * 2); // 2Xp por real gasto;
     }
 
-    // Método exclusivo para pagar com XP;
+    // ==================== MÉTODO PARA PAGAR COM XP ====================
     public void pagarComXP(double valorTotal) {
         int xpNecessario = (int) (valorTotal * TAXA_CONVERSAO);
         try {

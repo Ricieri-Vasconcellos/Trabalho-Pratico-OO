@@ -2,10 +2,13 @@ package br.edu.cafeteria.modelo;
 
 public class ClienteStandard extends Cliente {
 
-    // Construtor;
+    // ==================== MÉTODO CONSTRUTOR ====================
+
     public ClienteStandard(String nome, String cpf) {
         super(nome, cpf);
     }
+
+    // ==================== MÉTODO TOSTRING ====================
 
     public String toString() {
         return "Cliente Standard - Nome: " + getNome() + ", CPF: " + getCpf() + ", Saldo XP: " + getSaldoXP() + "\n";

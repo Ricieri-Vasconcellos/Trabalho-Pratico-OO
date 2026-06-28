@@ -7,6 +7,7 @@ public class Menu {
     private Menu() {
     } // Para impedir instanciação da classe Menu
 
+    // ==================== MÉTODO PARA EXIBIR MENU PRINCIPAL ====================
     public static int exibirMenuPrincipal() {
         String menu = "\n=== Byte & Brew - Sistema de Vendas ===\n";
         menu += "1. Abrir Pedido\n";
@@ -27,6 +28,8 @@ public class Menu {
         return op;
     }
 
+    // ==================== MÉTODO PARA EXIBIR MENU DO PEDIDO ====================
+
     public static int exibirMenuPedido() {
         String menu = "\n=== Byte & Brew - Menu do Pedido ===\n";
         menu += "1. Adicionar Item\n";
@@ -42,6 +45,9 @@ public class Menu {
 
         return op;
     }
+
+    // ==================== MÉTODO PARA EXIBIR MENU DE PESQUISAS
+    // ====================
 
     public static int exibirMenuPesquisa() {
         String menu = "\n=== Byte & Brew - Menu de Pesquisas ===\n";
@@ -59,6 +65,9 @@ public class Menu {
         return op;
     }
 
+    // ==================== MÉTODO PARA EXIBIR MENU DE ATUALIZAÇÕES
+    // ====================
+
     public static int exibirMenuAtualizar() {
         String menu = "\n=== Byte & Brew - Menu de Atualizações ===\n";
         menu += "1. Atualizar Produto\n";
@@ -75,6 +84,8 @@ public class Menu {
 
     }
 
+    // ==================== MÉTODO PARA EXIBIR MENU DE REMOÇÕES ====================
+
     public static int exibirMenuRemover() {
         String menu = "\n=== Byte & Brew - Menu de Remover ===\n";
         menu += "1. Remover Produto\n";
@@ -90,6 +101,8 @@ public class Menu {
 
     }
 
+    // ==================== MÉTODO PARA EXIBIR MENU DE CADASTROS ====================
+    
     public static int exibirMenuCadastros() {
         String menu = "\n=== Byte & Brew - Menu de Cadastros ===\n";
         menu += "1. Cadastrar Produto\n";

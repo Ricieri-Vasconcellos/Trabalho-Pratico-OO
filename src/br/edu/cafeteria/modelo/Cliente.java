@@ -10,7 +10,8 @@ public abstract class Cliente {
     private String cpf;
     private int saldoXP; // Experiencia acomulada por pontos;
 
-    // Construtor;
+    // ==================== MÉTODO CONSTRUTOR ====================
+
     public Cliente(String nome, String cpf) {
         try {
             if (nome.isBlank() || nome.trim().isEmpty() || cpf.isBlank() || cpf.trim().isEmpty()) {
@@ -27,7 +28,8 @@ public abstract class Cliente {
         }
     }
 
-    // Getter
+    // ==================== MÉTODOS GETTERS ====================
+
     public String getNome() {
         return nome;
     }
@@ -47,7 +49,8 @@ public abstract class Cliente {
     // Método abstrato que será sobrescrito;
     protected abstract int calcularPontos(double valorGasto);
 
-    // Método para adicionar XP após compra;
+    // ==================== MÉTODO PARA ADICIONAR XP APÓS A COMPRA ====================
+    
     protected void adicionarXP(double valorGasto) {
         int pontos = calcularPontos(valorGasto);
         this.saldoXP += pontos;
@@ -57,7 +60,8 @@ public abstract class Cliente {
         this.saldoXP -= pontos;
     }
 
-    // Metodo de atualização de cliente;
+    // ==================== MÉTODO PARA ATUALIZAR CLIENTE ====================
+
     public void atualizarCliente() {
         String menu = "0. Atualizar Nome\n1. Atualizar CPF\n2. Sair";
         int op = 0;
