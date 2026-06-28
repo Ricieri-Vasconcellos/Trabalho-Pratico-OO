@@ -115,7 +115,7 @@ src/
         └── cafeteria/
             ├── app/
             │   ├── Menu.java
-            │   └── principal.java
+            │   └── Principal.java
             │
             ├── modelo/
             │   ├── Produto.java
@@ -169,15 +169,15 @@ java -cp src br.edu.cafeteria.app.principal
 
 ## 🧠 Conceitos de POO Aplicados
 
-| Conceito                | Aplicação                                            |
-| ----------------------- | ---------------------------------------------------- |
-| Herança                 | Bebida e Comida estendem Produto                     |
-| Herança                 | ClienteVIP e ClienteStandard estendem Cliente        |
-| Polimorfismo            | Comportamentos específicos para cada tipo de cliente |
-| Classes Abstratas       | Produto e Cliente                                    |
-| Interfaces              | Promocional                                          |
-| Encapsulamento          | Uso de atributos privados e métodos de acesso        |
-| Exceções Personalizadas | EstoqueInsuficienteException e ValorInvalido         |
+| Conceito                | Aplicação                                                        |
+| ----------------------- | ---------------------------------------------------------------- |
+| Herança                 | Bebida e Comida estendem Produto                                 |
+| Herança                 | ClienteVIP e ClienteStandard estendem Cliente                    |
+| Polimorfismo            | Comportamentos específicos para cada tipo de cliente             |
+| Classes Abstratas       | Produto e Cliente                                                |
+| Interfaces              | Promocional                                                      |
+| Encapsulamento          | Uso de atributos privados e métodos de acesso                    |
+| Exceções Personalizadas | EstoqueInsuficienteException e PontosInsuficientesException      |
 
 ---
 
