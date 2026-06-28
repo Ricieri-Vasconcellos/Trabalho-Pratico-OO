@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Principal {
-    private static List<Cliente> clientes = new ArrayList<>();
-    private static List<Pedido> pedidos = new ArrayList<>();
-    private static List<Produto> produtos = new ArrayList<>();
+    private static final List<Cliente> clientes = new ArrayList<>();
+    private static final List<Pedido> pedidos = new ArrayList<>();
+    private static final List<Produto> produtos = new ArrayList<>();
     private static int aux;
 
     public static void main(String[] args) {
