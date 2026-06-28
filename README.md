@@ -8,7 +8,7 @@
 
 ![Java](https://img.shields.io/badge/Java-21.0.11-orange)
 ![Paradigma](https://img.shields.io/badge/Paradigma-POO-blue)
-![Status](https://img.shields.io/badge/Status-Testando-success)
+![Status](https://img.shields.io/badge/Status-Concluído-success)
 ![Licença](https://img.shields.io/badge/Licença-Acadêmica-green)
 
 </div>
